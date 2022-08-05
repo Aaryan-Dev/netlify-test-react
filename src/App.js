@@ -6,7 +6,8 @@ import UserDetails from "./components/UserDetails";
 function App() {
   const [data, setData] = useState([]);
   const url =
-    "https://masai-course.s3.ap-south-1.amazonaws.com/editor/uploads/2022-06-22/db_720032.json";
+    // "https://masai-course.s3.ap-south-1.amazonaws.com/editor/uploads/2022-06-22/db_720032.json";
+    "http://127.0.0.1:5500/src/db.json";
 
   const getdata = () =>
     fetch(url).then((res) => {
