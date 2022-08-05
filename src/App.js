@@ -61,7 +61,20 @@ function App() {
     setData(newdata);
   };
 
-  const Takeit = () => {};
+  const takeit = data.map((el) => (
+    <UserDetails
+      id={el.id}
+      avatar={el.avatar}
+      first_name={el.first_name}
+      last_name={el.last_name}
+      address={el.address}
+      karma={el.karma}
+      followers={el.followers}
+      posts={el.posts}
+      is_following={el.is_following}
+      change={change}
+    />
+  ));
 
   return (
     <div className="App" data-testid="app">
@@ -72,7 +85,10 @@ function App() {
       <button onClick={sortDecs} data-testid="sort-desc-btn">
         Sort by Desc
       </button>
-      {data.map((el) => (
+
+      {takeit}
+
+      {/* {data.map((el) => (
         // <UserDetails
         //   id={el.id}
         //   avatar={el.avatar}
@@ -85,8 +101,7 @@ function App() {
         //   is_following={el.is_following}
         //   change={change}
         // />
-        <li>{el.first_name}</li>
-      ))}
+      ))} */}
     </div>
   );
 }
