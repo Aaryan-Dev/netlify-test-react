@@ -1,24 +1,29 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import UserDetails from "./components/UserDetails";
-// import data from db.json
+import data from "./db.json";
+
+// const getdata = () =>
+//   fetch(data).then((res) => {
+//     return res.json();
+//   });
+
+const getdata = () => {
+  return data;
+};
 
 function App() {
   const [data, setData] = useState([]);
-  const url =
-    // "https://masai-course.s3.ap-south-1.amazonaws.com/editor/uploads/2022-06-22/db_720032.json";
-    "http://127.0.0.1:5500/src/db.json";
-
-  const getdata = () =>
-    fetch(url).then((res) => {
-      return res.json();
-    });
+  // const url =
+  //   // "https://masai-course.s3.ap-south-1.amazonaws.com/editor/uploads/2022-06-22/db_720032.json";
+  //   "./db.json";
 
   useEffect(() => {
-    getdata().then((res) => {
-      console.log(res);
-      setData(res);
-    });
+    // getdata().then((res) => {
+    //   console.log(res);
+    //   setData(res);
+    // });
+    setData(getdata());
 
     // return setData([]);
   }, []);
@@ -62,24 +67,8 @@ function App() {
     setData(newdata);
   };
 
-  const takeit = data.map((el) => (
-    <UserDetails
-      id={el.id}
-      avatar={el.avatar}
-      first_name={el.first_name}
-      last_name={el.last_name}
-      address={el.address}
-      karma={el.karma}
-      followers={el.followers}
-      posts={el.posts}
-      is_following={el.is_following}
-      change={change}
-    />
-  ));
-
   return (
     <div className="App" data-testid="app">
-      <h3>fuckers</h3>
       <button onClick={sortAsc} data-testid="sort-asc-btn">
         Sort by Asc
       </button>
@@ -87,22 +76,20 @@ function App() {
         Sort by Desc
       </button>
 
-      {takeit}
-
-      {/* {data.map((el) => (
-        // <UserDetails
-        //   id={el.id}
-        //   avatar={el.avatar}
-        //   first_name={el.first_name}
-        //   last_name={el.last_name}
-        //   address={el.address}
-        //   karma={el.karma}
-        //   followers={el.followers}
-        //   posts={el.posts}
-        //   is_following={el.is_following}
-        //   change={change}
-        // />
-      ))} */}
+      {data.map((el) => (
+        <UserDetails
+          id={el.id}
+          avatar={el.avatar}
+          first_name={el.first_name}
+          last_name={el.last_name}
+          address={el.address}
+          karma={el.karma}
+          followers={el.followers}
+          posts={el.posts}
+          is_following={el.is_following}
+          change={change}
+        />
+      ))}
     </div>
   );
 }
